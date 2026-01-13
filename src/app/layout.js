@@ -21,8 +21,8 @@ export const metadata = {
       { url: '/Main Logo (Transparent).png' },
       { url: '/Main Logo (Transparent).png', type: 'image/png' },
     ],},
-  title: "Food Ordering Website",
-  description: "Food at it's Best",
+  title: "Bridger Real Estate Portfolio",
+  description: "Bridger Real Estate Portfolio",
 };
 
 export default function RootLayout({ children }) {
