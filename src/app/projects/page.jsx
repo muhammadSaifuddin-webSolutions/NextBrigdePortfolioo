@@ -1,13 +1,129 @@
+"use client"
+
+import { useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ChevronRight } from "lucide-react"
 import PropertyCard from "@/components/cards/property-card"
 
+const PROJECTS = [
+  {
+    image: ["/modern-villa-dubai.jpg", "/luxury-residence-dubai.png"],
+    title: "Rivera The Valley",
+    developer: "Emaar Properties",
+    price: "AED 4.78M",
+    location: "The Valley",
+    handover: "Q2 2029",
+    logo: "EMAAR",
+    units: "4",
+    whatsappPhone: "+971454542588",
+  },
+  {
+    image: ["/dubai-apartments.jpg", "/palm-jumeirah-dubai.jpg"],
+    title: "Altan",
+    developer: "Aldar Properties",
+    price: "AED 1.81M",
+    location: "Dubai Creek Harbour",
+    handover: "Q3 2029",
+    logo: "EMAAR",
+    units: "1, 2, 3",
+    whatsappPhone: "+971454542588",
+  },
+  {
+    image: ["/luxury-residence-dubai.png", "/dubai-sunset-skyline.png"],
+    title: "Vida Residences Hillside",
+    developer: "Emaar Properties",
+    price: "AED 1.82M",
+    location: "Dubai Hills Estate",
+    handover: "Q2 2029",
+    logo: "EMAAR",
+    units: "1, 2, 3",
+    whatsappPhone: "+971454542588",
+  },
+  {
+    image: ["/dubai-apartments.jpg", "/palm-jumeirah-dubai.jpg"],
+    title: "Altan",
+    developer: "Aldar Properties",
+    price: "AED 1.81M",
+    location: "Dubai Creek Harbour",
+    handover: "Q3 2029",
+    logo: "EMAAR",
+    units: "1, 2, 3",
+    whatsappPhone: "+971454542588",
+  },
+  {
+    image: ["/luxury-residence-dubai.png", "/dubai-sunset-skyline.png"],
+    title: "Vida Residences Hillside",
+    developer: "Emaar Properties",
+    price: "AED 1.82M",
+    location: "Dubai Hills Estate",
+    handover: "Q2 2029",
+    logo: "EMAAR",
+    units: "1, 2, 3",
+    whatsappPhone: "+971454542588",
+  },  {
+    image: ["/dubai-apartments.jpg", "/palm-jumeirah-dubai.jpg"],
+    title: "Altan",
+    developer: "Aldar Properties",
+    price: "AED 1.81M",
+    location: "Dubai Creek Harbour",
+    handover: "Q3 2029",
+    logo: "EMAAR",
+    units: "1, 2, 3",
+    whatsappPhone: "+971454542588",
+  },
+  {
+    image: ["/luxury-residence-dubai.png", "/dubai-sunset-skyline.png"],
+    title: "Vida Residences Hillside",
+    developer: "Emaar Properties",
+    price: "AED 1.82M",
+    location: "Dubai Hills Estate",
+    handover: "Q2 2029",
+    logo: "EMAAR",
+    units: "1, 2, 3",
+    whatsappPhone: "+971454542588",
+  },  {
+    image: ["/dubai-apartments.jpg", "/palm-jumeirah-dubai.jpg"],
+    title: "Altan",
+    developer: "Aldar Properties",
+    price: "AED 1.81M",
+    location: "Dubai Creek Harbour",
+    handover: "Q3 2029",
+    logo: "EMAAR",
+    units: "1, 2, 3",
+    whatsappPhone: "+971454542588",
+  },
+  {
+    image: ["/luxury-residence-dubai.png", "/dubai-sunset-skyline.png"],
+    title: "Vida Residences Hillside",
+    developer: "Emaar Properties",
+    price: "AED 1.82M",
+    location: "Dubai Hills Estate",
+    handover: "Q2 2029",
+    logo: "EMAAR",
+    units: "1, 2, 3",
+    whatsappPhone: "+971454542588",
+  },
+  // 👉 duplicate or add more objects to test pagination
+]
 export default function ProjectsPage() {
+
+    const ITEMS_PER_PAGE = 6
+  const [currentPage, setCurrentPage] = useState(1)
+
+  const totalPages = Math.ceil(PROJECTS.length / ITEMS_PER_PAGE)
+
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
+  const visibleProjects = PROJECTS.slice(
+    startIndex,
+    startIndex + ITEMS_PER_PAGE
+  )
+
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative h-[400px] w-full">
+       <section className="relative h-[400px] w-full">
         <Image
           src="/images/screencapture-springfieldproperties-ae-projects-2026-01-05-14-57-10.jpeg"
           alt="Luxury Property"
@@ -20,16 +136,22 @@ export default function ProjectsPage() {
             <h1 className="text-5xl font-bold mb-6">Ovelle at The Valley</h1>
             <div className="flex gap-12 mb-8">
               <div>
-                <p className="text-xs uppercase text-gray-300 mb-1">Starting Price</p>
+                <p className="text-xs uppercase text-gray-300 mb-1">
+                  Starting Price
+                </p>
                 <p className="text-xl font-bold">AED 7.25M</p>
               </div>
               <div>
-                <p className="text-xs uppercase text-gray-300 mb-1">Payment Plan</p>
+                <p className="text-xs uppercase text-gray-300 mb-1">
+                  Payment Plan
+                </p>
                 <p className="text-xl font-bold">80/20</p>
               </div>
             </div>
             <div className="flex gap-4">
-              <Button className="bg-white text-black hover:bg-gray-100 px-8">View Details</Button>
+              <Button className="bg-white text-black hover:bg-gray-100 px-8">
+                View Details
+              </Button>
               <Button
                 variant="outline"
                 className="border-white text-white hover:bg-white hover:text-black bg-transparent"
@@ -44,59 +166,49 @@ export default function ProjectsPage() {
       {/* Projects Grid */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-[#1a2b56] mb-12">Off plan properties for sale</h2>
+          <h2 className="text-3xl font-bold text-[#1a2b56] mb-12">
+            Off plan properties for sale
+          </h2>
+
+          {/* ✅ MAPPED CARDS */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Map through a list of projects from your screenshot */}
-            <PropertyCard
-              image={["/modern-villa-dubai.jpg", "/luxury-residence-dubai.png"]}
-              title="Rivera The Valley"
-              developer="Emaar Properties"
-              price="AED 4.78M"
-              location="The Valley"
-              handover="Q2 2029"
-              logo="EMAAR"
-              units="4"
-              whatsappPhone="+971454542588"
-            />
-            <PropertyCard
-              image={["/dubai-apartments.jpg", "/palm-jumeirah-dubai.jpg"]}
-              title="Altan"
-              developer="Aldar Properties"
-              price="AED 1.81M"
-              location="Dubai Creek Harbour"
-              handover="Q3 2029"
-              logo="EMAAR"
-              units="1, 2, 3"
-              whatsappPhone="+971454542588"
-            />
-            <PropertyCard
-              image={["/luxury-residence-dubai.png", "/dubai-sunset-skyline.png"]}
-              title="Vida Residences Hillside"
-              developer="Emaar Properties"
-              price="AED 1.82M"
-              location="Dubai Hills Estate"
-              handover="Q2 2029"
-              logo="EMAAR"
-              units="1, 2, 3"
-              whatsappPhone="+971454542588"
-            />
-            {/* Add more cards to match the grid in the screenshot */}
+            {visibleProjects.map((project, index) => (
+              <PropertyCard key={index} {...project} />
+            ))}
           </div>
 
-          <div className="mt-16 flex justify-center gap-2">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((p) => (
-              <button
-                key={p}
-                className={`w-10 h-10 border rounded ${p === 1 ? "bg-[#1a2b56] text-white border-[#1a2b56]" : "hover:bg-gray-50"}`}
-              >
-                {p}
-              </button>
-            ))}
-            <button className="px-4 border rounded hover:bg-gray-50">Next »</button>
+          {/* ✅ PAGINATION */}
+          <div className="mt-16 flex justify-center gap-2 flex-wrap">
+            {Array.from({ length: totalPages }).map((_, index) => {
+              const page = index + 1
+              const isActive = page === currentPage
+
+              return (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`w-10 h-10 border rounded ${
+                    isActive
+                      ? "bg-[#1a2b56] text-white border-[#1a2b56]"
+                      : "hover:bg-gray-50"
+                  }`}
+                >
+                  {page}
+                </button>
+              )
+            })}
+
+            <button
+              onClick={() =>
+                setCurrentPage((p) => Math.min(p + 1, totalPages))
+              }
+              className="px-4 border rounded hover:bg-gray-50"
+            >
+              Next »
+            </button>
           </div>
         </div>
       </section>
-
       {/* SEO Section */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 max-w-5xl">
